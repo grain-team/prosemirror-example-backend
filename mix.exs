@@ -20,7 +20,9 @@ defmodule SlateOT.MixProject do
 
   defp deps do
     [
-      {:cowboy, "~> 2.6"}
+      {:cowboy, "~> 2.6"},
+      {:jason, "~> 1.1"},
+      {:exsync, "~> 0.2.3"}
     ]
   end
 end
