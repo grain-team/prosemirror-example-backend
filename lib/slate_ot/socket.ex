@@ -11,20 +11,21 @@ defmodule SlateOT.Socket do
 
   @impl true
   def websocket_init(state) do
-    operations = State.register()
-    reply(%{type: "init", operations: operations}, state)
+    {steps, client_ids} = State.register() |> Enum.unzip()
+    reply(%{type: "init", steps: Enum.reverse(steps), clientIDs: client_ids}, state)
   end
 
   @impl true
-  def websocket_handle(msg, state) do
-    Logger.error(inspect(msg))
+  def websocket_handle({:text, msg}, state) do
+    msg = Jason.decode!(msg)
+    State.receive(msg)
     {:ok, state}
   end
 
   @impl true
-  def websocket_info(msg, state) do
-    Logger.error(inspect(msg))
-    {:ok, state}
+  def websocket_info({:steps, steps}, state) do
+    {steps, client_ids} = Enum.unzip(steps)
+    reply(%{type: "steps", steps: Enum.reverse(steps), clientIDs: client_ids}, state)
   end
 
   @impl true
