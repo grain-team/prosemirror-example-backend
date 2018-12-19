@@ -25,7 +25,7 @@ defmodule SlateOT.Socket do
   @impl true
   def websocket_info({:steps, steps}, state) do
     {steps, client_ids} = Enum.unzip(steps)
-    reply(%{type: "steps", steps: Enum.reverse(steps), clientIDs: client_ids}, state)
+    reply(%{type: "steps", steps: steps, clientIDs: client_ids}, state)
   end
 
   @impl true

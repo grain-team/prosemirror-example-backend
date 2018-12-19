@@ -34,6 +34,7 @@ defmodule SlateOT.State do
           send(client, {:steps, steps})
         end)
         %This{this | steps: Enum.concat(steps, this.steps), version: this.version + 1}
+        %This{this | steps: steps |> Enum.reverse() |> Enum.concat(this.steps), version: this.version + length(steps)}
       else
         this
       end
