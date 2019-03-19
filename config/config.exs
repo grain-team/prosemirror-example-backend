@@ -5,3 +5,7 @@ use Mix.Config
 config :logger,
   backends: [:console],
   level: :info
+
+config :logger, :console,
+  format: "\n$time $metadata[$level] $levelpad$message\n",
+  metadata: [:pid]

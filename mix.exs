@@ -1,9 +1,9 @@
-defmodule SlateOT.MixProject do
+defmodule PMBackend.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :slate_ot,
+      app: :pm_backend,
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -13,8 +13,8 @@ defmodule SlateOT.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
-      mod: {SlateOT.Application, []}
+      extra_applications: [:logger, :erlexec, :exexec],
+      mod: {PMBackend.Application, []}
     ]
   end
 
@@ -22,7 +22,8 @@ defmodule SlateOT.MixProject do
     [
       {:cowboy, "~> 2.6"},
       {:jason, "~> 1.1"},
-      {:exsync, "~> 0.2.3"}
+      {:exsync, "~> 0.2.3"},
+      {:exexec, github: "lessless/exexec"}
     ]
   end
 end

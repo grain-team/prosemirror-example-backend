@@ -1,4 +1,4 @@
-defmodule SlateOT.Application do
+defmodule PMBackend.Application do
   @moduledoc false
   require Logger
 
@@ -6,13 +6,15 @@ defmodule SlateOT.Application do
 
   def start(_type, _args) do
     children = [
-      SlateOT.State
+      PMBackend.Node,
+      {Registry, name: PMBackend.Registry, keys: :unique},
+      PMBackend.StateSupervisor
     ]
 
-    dispatch = :cowboy_router.compile([{:_, [{'/', SlateOT.Socket, []}]}])
+    dispatch = :cowboy_router.compile([{:_, [{'/', PMBackend.Socket, []}]}])
 
     {:ok, _} =
-      :cowboy.start_clear(:slate_ot, [port: 8080], %{
+      :cowboy.start_clear(:pm_backend, [port: 8080], %{
         env: %{dispatch: dispatch}
       })
 
@@ -24,7 +26,7 @@ defmodule SlateOT.Application do
         :ok
     end
 
-    opts = [strategy: :one_for_one, name: SlateOT.Supervisor]
+    opts = [strategy: :rest_for_one, name: PMBackend.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

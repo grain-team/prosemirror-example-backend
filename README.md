@@ -1,21 +1,30 @@
-# SlateOT
+# Prosemirror Example Backend
 
-**TODO: Add description**
+Backend server for Prosemirror Collab.
 
-## Installation
+## Setup
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `slate_ot` to your list of dependencies in `mix.exs`:
+1) Install node dependencies
 
-```elixir
-def deps do
-  [
-    {:slate_ot, "~> 0.1.0"}
-  ]
-end
+```bash
+$ pushd priv/js && yarn install && popd
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/slate_ot](https://hexdocs.pm/slate_ot).
+2) Install Elixir dependencies
+
+```bash
+$ mix deps.get
+```
+
+## Run
+
+```bash
+$ mix run --no-halt
+```
+
+With shell:
+
+```
+$ iex -S mix
+```
 

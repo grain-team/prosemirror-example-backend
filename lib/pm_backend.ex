@@ -1,6 +1,6 @@
-defmodule SlateOT do
+defmodule PMBackend do
   @moduledoc """
-  Documentation for SlateOT.
+  Documentation for PMBackend.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule SlateOT do
 
   ## Examples
 
-      iex> SlateOT.hello()
+      iex> PMBackend.hello()
       :world
 
   """
